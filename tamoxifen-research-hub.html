@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamoxifen Research Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sage: #4a7c6f; --sage-light: #e8f0ee; --sage-mid: #b8d4cc; --sage-dark: #2d5248;
+  --stone: #8a8478; --stone-light: #f4f2ee; --stone-mid: #d4d0c8;
+  --ink: #1e1e1c; --ink-soft: #3d3d39; --mist: #f9f8f5; --white: #ffffff;
+  --amber: #c8853a; --amber-light: #fdf1e4;
+  --rose: #b85c6e; --rose-light: #fbedf0;
+  --blue: #3a6cb8; --blue-light: #eaf0fc;
+  --teal: #2e8b8b; --teal-light: #e4f4f4;
+  --purple: #7c5cbf; --purple-light: #f0ecfb;
+  --border: #e2dfd8; --shadow-sm: rgba(30,30,28,0.05); --shadow: rgba(30,30,28,0.09);
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(--ink); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+.page { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
+
+.hero { padding: 52px 0 40px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+.hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 42px; font-weight: 400; color: var(--ink); line-height: 1.05; letter-spacing: -0.5px; margin-bottom: 10px; }
+.hero h1 em { font-style: italic; color: var(--sage); }
+.hero-sub { font-size: 15px; color: var(--stone); max-width: 500px; line-height: 1.65; }
+.hero-pill { background: var(--sage); color: var(--white); font-size: 11px; font-weight: 500; padding: 7px 14px; border-radius: 20px; letter-spacing: 0.4px; white-space: nowrap; align-self: flex-start; margin-top: 8px; }
+
+.disclaimer { background: var(--amber-light); border-left: 3px solid var(--amber); border-radius: 0 10px 10px 0; padding: 13px 18px; font-size: 13px; color: #6b4a1e; margin-bottom: 36px; line-height: 1.65; }
+.disclaimer strong { font-weight: 500; }
+
+.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.9px; text-transform: uppercase; color: var(--stone); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.search-section { margin-bottom: 40px; }
+.search-wrap { display: flex; gap: 8px; margin-bottom: 8px; }
+.search-input { flex: 1; padding: 13px 18px; border: 1px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: var(--white); transition: border-color 0.15s, box-shadow 0.15s; box-shadow: 0 1px 4px var(--shadow-sm); }
+.search-input:focus { outline: none; border-color: var(--sage); box-shadow: 0 0 0 3px rgba(74,124,111,0.12); }
+.search-input::placeholder { color: var(--stone); }
+.search-dest { display: flex; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px var(--shadow-sm); flex-wrap: wrap; }
+.dest-btn { padding: 10px 16px; background: var(--white); border: none; border-right: 1px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--ink-soft); transition: background 0.12s, color 0.12s; white-space: nowrap; }
+.dest-btn:last-child { border-right: none; }
+.dest-btn:hover { background: var(--sage-light); color: var(--sage-dark); }
+.dest-btn.active { background: var(--sage); color: var(--white); }
+.search-hint { font-size: 12px; color: var(--stone); margin-top: 8px; }
+
+.topics-section { margin-bottom: 48px; }
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.topic-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 16px 16px 14px; cursor: default; transition: all 0.15s; text-align: left; position: relative; overflow: hidden; }
+.topic-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--card-accent, var(--sage)); opacity: 0; transition: opacity 0.15s; }
+.topic-card:hover { border-color: var(--card-accent, var(--sage-mid)); box-shadow: 0 2px 12px var(--shadow); transform: translateY(-1px); }
+.topic-card:hover::before { opacity: 1; }
+.topic-card .t-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+.topic-card .t-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+.topic-card .t-desc { font-size: 12px; color: var(--stone); line-height: 1.5; margin-bottom: 12px; }
+.topic-card .t-links { display: flex; gap: 5px; flex-wrap: wrap; }
+.t-link-btn { font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border); background: var(--stone-light); color: var(--ink-soft); cursor: pointer; transition: all 0.12s; font-family: 'DM Sans', sans-serif; }
+.t-link-btn:hover { background: var(--card-accent-light, var(--sage-light)); border-color: var(--card-accent, var(--sage-mid)); color: var(--card-accent-dark, var(--sage-dark)); }
+
+.resources-section { margin-bottom: 48px; }
+.resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.resource-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; transition: all 0.15s; text-decoration: none; display: block; }
+.resource-card:hover { border-color: var(--sage-mid); box-shadow: 0 2px 10px var(--shadow-sm); transform: translateY(-1px); }
+.resource-card .r-flag { font-size: 18px; margin-bottom: 6px; display: block; }
+.resource-card .r-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+.resource-card .r-country { font-size: 11px; font-weight: 500; letter-spacing: 0.3px; color: var(--stone); margin-bottom: 6px; }
+.resource-card .r-desc { font-size: 12px; color: var(--stone); line-height: 1.55; }
+.resource-card .r-tag { display: inline-block; margin-top: 8px; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 20px; background: var(--sage-light); color: var(--sage-dark); }
+
+.page-footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 12px; color: var(--stone); text-align: center; line-height: 2; }
+.page-footer a { color: var(--sage); text-decoration: none; }
+.page-footer a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 32px; }
+  .hero-pill { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div>
+      <h1>Tamoxifen<br><em>Research Hub</em></h1>
+      <p class="hero-sub">A starting point for researching tamoxifen — patient experiences, clinical studies, side effects, timelines, and support. No login. No account. Every button opens directly in the best source.</p>
+    </div>
+    <div class="hero-pill">Free · No account needed</div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>For personal research only.</strong> This tool opens searches in trusted medical and community sources. It does not provide medical advice. Always discuss treatment decisions with your oncologist or specialist. Guidelines vary by country and are updated regularly.
+  </div>
+
+  <div class="search-section">
+    <div class="section-label">Search anything</div>
+    <div class="search-wrap">
+      <input type="text" class="search-input" id="searchInput" placeholder="e.g. hot flashes management, 5 vs 10 year treatment, joint pain after 2 years…" />
+    </div>
+    <div class="search-dest">
+      <button class="dest-btn active" onclick="setDest('google',this)">Google</button>
+      <button class="dest-btn" onclick="setDest('pubmed',this)">PubMed</button>
+      <button class="dest-btn" onclick="setDest('reddit',this)">Reddit</button>
+      <button class="dest-btn" onclick="setDest('youtube',this)">YouTube</button>
+      <button class="dest-btn" onclick="setDest('scholar',this)">Google Scholar</button>
+      <button class="dest-btn" onclick="setDest('news',this)">News</button>
+    </div>
+    <div class="search-hint">Select a destination, type your question, then press Enter — it opens directly in a new tab.</div>
+  </div>
+
+  <div class="topics-section">
+    <div class="section-label">Browse by topic</div>
+    <div class="topic-grid">
+
+      <div class="topic-card" style="--card-accent:#4a7c6f;--card-accent-light:#e8f0ee;--card-accent-dark:#2d5248;">
+        <span class="t-icon">💬</span>
+        <div class="t-title">Patient experiences</div>
+        <div class="t-desc">Real stories from people on tamoxifen — what to expect, daily life, coping.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen patient experiences stories','reddit')">Reddit</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen patient experiences forum','google')">Forums</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen my experience','youtube')">YouTube</button>
+        </div>
+      </div>
+
+      <div class="topic-card" style="--card-accent:#b85c6e;--card-accent-light:#fbedf0;--card-accent-dark:#8a3a4a;">
+        <span class="t-icon">⚠️</span>
+        <div class="t-title">Side effects</div>
+        <div class="t-desc">Common and rare side effects, how they're managed, and when to call your doctor.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen side effects management','pubmed')">PubMed</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen side effects what to expect','google')">Google</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen side effects','reddit')">Reddit</button>
+        </div>
+      </div>
+
+      <div class="topic-card" style="--card-accent:#3a6cb8;--card-accent-light:#eaf0fc;--card-accent-dark:#1e4a8c;">
+        <span class="t-icon">📊</span>
+        <div class="t-title">Recurrence & survival</div>
+        <div class="t-desc">Statistics on recurrence reduction, survival benefit, and long-term outcomes.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen recurrence reduction survival benefit','pubmed')">PubMed</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen recurrence statistics','scholar')">Scholar</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen recurrence prevention','google')">Google</button>
+        </div>
+      </div>
+
+      <div class="topic-card" style="--card-accent:#2e8b8b;--card-accent-light:#e4f4f4;--card-accent-dark:#1a5c5c;">
+        <span class="t-icon">🔬</span>
+        <div class="t-title">Clinical studies</div>
+        <div class="t-desc">Landmark trials, recent research, and what the latest evidence shows.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen clinical trial results breast cancer','pubmed')">PubMed</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen randomised controlled trial','scholar')">Scholar</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen new research 2024 2025','news')">News</button>
+        </div>
+      </div>
+
+      <div class="topic-card" style="--card-accent:#c8853a;--card-accent-light:#fdf1e4;--card-accent-dark:#8a5520;">
+        <span class="t-icon">📅</span>
+        <div class="t-title">Treatment timeline</div>
+        <div class="t-desc">5 years vs 10 years, extended therapy, when to stop, and what happens after.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen 5 years vs 10 years extended therapy','pubmed')">PubMed</button>
+          <button class="t-link-btn" onclick="openSearch('how long to take tamoxifen guidelines','google')">Google</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen duration treatment decision','reddit')">Reddit</button>
+        </div>
+      </div>
+
+      <div class="topic-card" style="--card-accent:#7c5cbf;--card-accent-light:#f0ecfb;--card-accent-dark:#4e3a8a;">
+        <span class="t-icon">🧠</span>
+        <div class="t-title">Mental health & cognition</div>
+        <div class="t-desc">Mood changes, anxiety, depression, brain fog, and cognitive effects.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen depression anxiety mood cognitive effects','pubmed')">PubMed</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen brain fog mood changes','reddit')">Reddit</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen mental health side effects','google')">Google</button>
+        </div>
+      </div>
+
+      <div class="topic-card" style="--card-accent:#4a7c6f;--card-accent-light:#e8f0ee;--card-accent-dark:#2d5248;">
+        <span class="t-icon">🌡️</span>
+        <div class="t-title">Hot flashes & menopause</div>
+        <div class="t-desc">Managing menopausal symptoms, hot flashes, night sweats, and vaginal dryness.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen hot flashes management treatment','pubmed')">PubMed</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen menopause symptoms relief','google')">Google</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen hot flashes what helped','reddit')">Reddit</button>
+        </div>
+      </div>
+
+      <div class="topic-card" style="--card-accent:#b85c6e;--card-accent-light:#fbedf0;--card-accent-dark:#8a3a4a;">
+        <span class="t-icon">🦴</span>
+        <div class="t-title">Bone health</div>
+        <div class="t-desc">Effects on bone density, osteoporosis risk, and management strategies.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen bone density osteoporosis premenopausal','pubmed')">PubMed</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen bone health monitoring','google')">Google</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen bones DEXA scan','reddit')">Reddit</button>
+        </div>
+      </div>
+
+      <div class="topic-card" style="--card-accent:#2e8b8b;--card-accent-light:#e4f4f4;--card-accent-dark:#1a5c5c;">
+        <span class="t-icon">🌱</span>
+        <div class="t-title">Fertility & pregnancy</div>
+        <div class="t-desc">Fertility preservation, pregnancy after tamoxifen, premenopausal considerations.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen fertility pregnancy premenopausal breast cancer','pubmed')">PubMed</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen fertility preservation options','google')">Google</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen pregnancy pause','reddit')">Reddit</button>
+        </div>
+      </div>
+
+      <div class="topic-card" style="--card-accent:#3a6cb8;--card-accent-light:#eaf0fc;--card-accent-dark:#1e4a8c;">
+        <span class="t-icon">⚖️</span>
+        <div class="t-title">Alternatives & comparisons</div>
+        <div class="t-desc">Tamoxifen vs aromatase inhibitors, OFS, and emerging treatment options.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen vs aromatase inhibitors premenopausal outcomes','pubmed')">PubMed</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen vs letrozole anastrozole','google')">Google</button>
+          <button class="t-link-btn" onclick="openSearch('switching tamoxifen aromatase inhibitor','reddit')">Reddit</button>
+        </div>
+      </div>
+
+      <div class="topic-card" style="--card-accent:#c8853a;--card-accent-light:#fdf1e4;--card-accent-dark:#8a5520;">
+        <span class="t-icon">💊</span>
+        <div class="t-title">Drug interactions</div>
+        <div class="t-desc">Medications, supplements, and foods that can affect how tamoxifen works.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen drug interactions CYP2D6 medications','pubmed')">PubMed</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen interactions supplements avoid','google')">Google</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen interactions what to avoid','reddit')">Reddit</button>
+        </div>
+      </div>
+
+      <div class="topic-card" style="--card-accent:#7c5cbf;--card-accent-light:#f0ecfb;--card-accent-dark:#4e3a8a;">
+        <span class="t-icon">🤝</span>
+        <div class="t-title">Support & community</div>
+        <div class="t-desc">Support groups, helplines, online communities, and peer support networks.</div>
+        <div class="t-links">
+          <button class="t-link-btn" onclick="openSearch('tamoxifen breast cancer support group Australia','google')">Australia</button>
+          <button class="t-link-btn" onclick="openSearch('tamoxifen support community','reddit')">Reddit</button>
+          <button class="t-link-btn" onclick="openSearch('breast cancer tamoxifen support stories','youtube')">YouTube</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="resources-section">
+    <div class="section-label">Trusted resources by country</div>
+    <div class="resource-grid">
+
+      <a class="resource-card" href="https://www.bcna.org.au/health-information/articles/tamoxifen/" target="_blank">
+        <span class="r-flag">🇦🇺</span>
+        <div class="r-name">Breast Cancer Network Australia</div>
+        <div class="r-country">AUSTRALIA</div>
+        <div class="r-desc">Australia's peak organisation for people affected by breast cancer. Plain-language guides, My Journey app, peer support.</div>
+        <span class="r-tag">Patient-focused</span>
+      </a>
+
+      <a class="resource-card" href="https://www.cancercouncil.com.au/breast-cancer/treatment/hormone-therapy/" target="_blank">
+        <span class="r-flag">🇦🇺</span>
+        <div class="r-name">Cancer Council Australia</div>
+        <div class="r-country">AUSTRALIA</div>
+        <div class="r-desc">National cancer authority — treatment guides, side effect management, 13 11 20 helpline, free booklets.</div>
+        <span class="r-tag">Clinical guidance</span>
+      </a>
+
+      <a class="resource-card" href="https://www.eviq.org.au" target="_blank">
+        <span class="r-flag">🇦🇺</span>
+        <div class="r-name">eviQ — Cancer Institute NSW</div>
+        <div class="r-country">AUSTRALIA</div>
+        <div class="r-desc">Evidence-based Australian cancer treatment protocols used by oncologists nationwide. Includes tamoxifen prescribing detail.</div>
+        <span class="r-tag">Clinical protocols</span>
+      </a>
+
+      <a class="resource-card" href="https://www.breastcancertrials.org.au" target="_blank">
+        <span class="r-flag">🇦🇺</span>
+        <div class="r-name">Breast Cancer Trials AU/NZ</div>
+        <div class="r-country">AUSTRALIA / NEW ZEALAND</div>
+        <div class="r-desc">Clinical trial updates, results from ANZ trials, patient information on enrolling in breast cancer research studies.</div>
+        <span class="r-tag">Clinical trials</span>
+      </a>
+
+      <a class="resource-card" href="https://pubmed.ncbi.nlm.nih.gov/?term=tamoxifen&sort=date" target="_blank">
+        <span class="r-flag">🌐</span>
+        <div class="r-name">PubMed — Tamoxifen</div>
+        <div class="r-country">INTERNATIONAL — NIH / NLM</div>
+        <div class="r-desc">The world's largest biomedical literature database. Latest tamoxifen research sorted by date. Free to search and read abstracts.</div>
+        <span class="r-tag">Research database</span>
+      </a>
+
+      <a class="resource-card" href="https://www.breastcancer.org/treatment/hormonal/tamoxifen" target="_blank">
+        <span class="r-flag">🇺🇸</span>
+        <div class="r-name">Breastcancer.org</div>
+        <div class="r-country">UNITED STATES</div>
+        <div class="r-desc">Comprehensive patient-friendly tamoxifen information — how it works, side effects, who should take it, and community forums.</div>
+        <span class="r-tag">Patient education</span>
+      </a>
+
+      <a class="resource-card" href="https://www.macmillan.org.uk/cancer-information-and-support/treatments-and-drugs/tamoxifen" target="_blank">
+        <span class="r-flag">🇬🇧</span>
+        <div class="r-name">Macmillan Cancer Support</div>
+        <div class="r-country">UNITED KINGDOM</div>
+        <div class="r-desc">UK's leading cancer support charity. Clear tamoxifen guides, active forum community, and free support helpline.</div>
+        <span class="r-tag">Support + guidance</span>
+      </a>
+
+      <a class="resource-card" href="https://www.cancerresearchuk.org/about-cancer/breast-cancer/treatment/hormone-therapy/tamoxifen" target="_blank">
+        <span class="r-flag">🇬🇧</span>
+        <div class="r-name">Cancer Research UK</div>
+        <div class="r-country">UNITED KINGDOM</div>
+        <div class="r-desc">Evidence-based patient information on tamoxifen from one of the world's leading cancer research organisations.</div>
+        <span class="r-tag">Clinical evidence</span>
+      </a>
+
+      <a class="resource-card" href="https://www.reddit.com/r/breastcancer/search/?q=tamoxifen&sort=top" target="_blank">
+        <span class="r-flag">🌐</span>
+        <div class="r-name">Reddit — r/breastcancer</div>
+        <div class="r-country">INTERNATIONAL — Community</div>
+        <div class="r-desc">Large, active community of patients and caregivers. Honest first-person tamoxifen experiences, sorted by most helpful posts.</div>
+        <span class="r-tag">Patient community</span>
+      </a>
+
+      <a class="resource-card" href="https://clinicaltrials.gov/search?cond=breast+cancer&term=tamoxifen&country=Australia" target="_blank">
+        <span class="r-flag">🌐</span>
+        <div class="r-name">ClinicalTrials.gov — Australia</div>
+        <div class="r-country">INTERNATIONAL — NIH</div>
+        <div class="r-desc">Active and recruiting tamoxifen-related trials in Australia. Search by location, phase, and eligibility criteria.</div>
+        <span class="r-tag">Clinical trials</span>
+      </a>
+
+      <a class="resource-card" href="https://www.nccn.org/patients" target="_blank">
+        <span class="r-flag">🇺🇸</span>
+        <div class="r-name">NCCN Patient Guidelines</div>
+        <div class="r-country">UNITED STATES</div>
+        <div class="r-desc">US National Comprehensive Cancer Network patient guidelines including hormone therapy decision trees and tamoxifen protocols.</div>
+        <span class="r-tag">Clinical guidelines</span>
+      </a>
+
+      <a class="resource-card" href="https://www.youtube.com/results?search_query=tamoxifen+experience+side+effects+breast+cancer" target="_blank">
+        <span class="r-flag">🌐</span>
+        <div class="r-name">YouTube — Patient videos</div>
+        <div class="r-country">INTERNATIONAL</div>
+        <div class="r-desc">Video diaries, oncologist explainers, and patient stories about tamoxifen treatment from around the world.</div>
+        <span class="r-tag">Video content</span>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="page-footer">
+    Tamoxifen Research Hub &middot; Free to use and share &middot; No account, no tracking<br>
+    Built to help people find credible tamoxifen information quickly<br>
+    <a href="https://www.bcna.org.au" target="_blank">BCNA</a> &middot;
+    <a href="https://www.cancercouncil.com.au" target="_blank">Cancer Council AU</a> &middot;
+    <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank">PubMed</a> &middot;
+    <a href="https://www.breastcancer.org" target="_blank">Breastcancer.org</a><br>
+    Not a substitute for medical advice &middot; Always consult your specialist
+  </div>
+
+</div>
+<script>
+let currentDest = 'google';
+const destinations = {
+  google:  q => 'https://www.google.com/search?q=' + encodeURIComponent(q),
+  pubmed:  q => 'https://pubmed.ncbi.nlm.nih.gov/?term=' + encodeURIComponent(q) + '&sort=date',
+  reddit:  q => 'https://www.reddit.com/search/?q=' + encodeURIComponent(q) + '&sort=relevance&t=year',
+  youtube: q => 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q),
+  scholar: q => 'https://scholar.google.com/scholar?q=' + encodeURIComponent(q) + '&as_ylo=2018',
+  news:    q => 'https://news.google.com/search?q=' + encodeURIComponent(q) + '&hl=en-AU'
+};
+function setDest(dest, btn) {
+  currentDest = dest;
+  document.querySelectorAll('.dest-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function openSearch(query, dest) {
+  var d = dest || currentDest;
+  var fn = destinations[d] || destinations.google;
+  window.open(fn(query), '_blank');
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var input = document.getElementById('searchInput');
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      var q = input.value.trim();
+      if (q) openSearch('tamoxifen ' + q, currentDest);
+    }
+  });
+});
+</script>
+</body>
+</html>

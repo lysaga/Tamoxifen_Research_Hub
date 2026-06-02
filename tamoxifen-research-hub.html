@@ -209,7 +209,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
   </div>
 
   <!-- API KEY SETUP -->
-  <div class="setup-banner" id="setupBanner">
+  <div class="setup-banner hidden" id="setupBanner">
     <div class="setup-title">🔑 One-time setup — add your free API key</div>
     <div class="setup-desc">
       This tool uses AI to summarise research for you. You need a free Perplexity API key — it takes 2 minutes and costs less than a coffee a month.<br>
@@ -221,7 +221,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
       <button class="setup-btn" onclick="saveKey()">Save key &amp; start searching</button>
     </div>
   </div>
-  <div class="key-saved hidden" id="keySaved">
+  <div class="key-saved hidden" id="keySaved" style = "display:none;" >
     ✓ API key saved — you're ready to search
     <span class="change-key" onclick="changeKey()">Change key</span>
   </div>
@@ -350,7 +350,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
 
 </div>
 <script>
-let apiKey = '';
+let apiKey = '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';
 let selectedCountry = 'Australia';
 let selectedFlag = '🇦🇺';
 
@@ -394,11 +394,12 @@ async function runSearch() {
   const query = document.getElementById('searchInput').value.trim();
   if (!query) return;
 
-  if (!apiKey) {
-    document.getElementById('apiKeyInput').focus();
-    alert('Please add your Perplexity API key first — see the yellow box above.');
-    return;
-  }
+// - hidden for fixed key -
+// -  if (!apiKey) {
+// -    document.getElementById('apiKeyInput').focus();
+// -    alert('Please add your Perplexity API key first — see the yellow box above.');
+// -    return;
+// -  }
 
   const btn = document.getElementById('searchBtn');
   btn.disabled = true;

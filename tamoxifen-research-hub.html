@@ -356,12 +356,6 @@ async function runSearch() {
   const query = document.getElementById('searchInput').value.trim();
   if (!query) return;
 
-  if (!apiKey) {
-    document.getElementById('apiKeyInput').focus();
-    alert('Please add your Perplexity API key first — see the yellow box above.');
-    return;
-  }
-
   const btn = document.getElementById('searchBtn');
   btn.disabled = true;
 

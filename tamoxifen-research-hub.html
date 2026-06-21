@@ -23,38 +23,21 @@
 }
 body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(--ink); min-height: 100vh; font-size: 15px; line-height: 1.6; }
 .page { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
-
-/* HERO */
 .hero { padding: 52px 0 40px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
 .hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 42px; font-weight: 400; color: var(--ink); line-height: 1.05; letter-spacing: -0.5px; margin-bottom: 10px; }
 .hero h1 em { font-style: italic; color: var(--sage); }
 .hero-sub { font-size: 15px; color: var(--stone); max-width: 500px; line-height: 1.65; }
 .hero-pill { background: var(--sage); color: var(--white); font-size: 11px; font-weight: 500; padding: 7px 14px; border-radius: 20px; letter-spacing: 0.4px; white-space: nowrap; align-self: flex-start; margin-top: 8px; }
-
-/* API KEY SETUP */
-.setup-banner { background: var(--amber-light); border: 1px solid #e8c88a; border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
-.setup-banner.hidden { display: none; }
-.setup-title { font-size: 14px; font-weight: 500; color: #6b4a1e; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-.setup-desc { font-size: 13px; color: #8a6030; margin-bottom: 14px; line-height: 1.6; }
-.setup-desc a { color: var(--amber); font-weight: 500; }
-.setup-row { display: flex; gap: 8px; flex-wrap: wrap; }
-.setup-input { flex: 1; min-width: 220px; padding: 10px 14px; border: 1px solid #e8c88a; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; background: var(--white); color: var(--ink); }
-.setup-input:focus { outline: none; border-color: var(--amber); }
-.setup-btn { padding: 10px 20px; background: var(--amber); color: var(--white); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; }
-.setup-btn:hover { background: #a86a28; }
-.key-saved { background: var(--sage-light); border: 1px solid var(--sage-mid); border-radius: 12px; padding: 12px 18px; margin-bottom: 24px; font-size: 13px; color: var(--sage-dark); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.key-saved.hidden { display: none; }
-.change-key { font-size: 12px; color: var(--stone); cursor: pointer; text-decoration: underline; }
-
-/* DISCLAIMER */
 .disclaimer { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--rose); border-radius: 0 10px 10px 0; padding: 12px 16px; font-size: 13px; color: var(--ink-soft); margin-bottom: 32px; line-height: 1.6; }
-
-/* SECTION LABEL */
 .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.9px; text-transform: uppercase; color: var(--stone); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
 .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-/* SEARCH BAR */
-.search-section { margin-bottom: 32px; }
+.search-section { margin-bottom: 24px; }
+.country-selector { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.country-label { font-size: 12px; font-weight: 500; color: var(--stone); white-space: nowrap; }
+.country-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.country-btn { padding: 7px 14px; border: 1px solid var(--border); border-radius: 20px; background: var(--white); font-size: 13px; font-weight: 500; color: var(--ink-soft); cursor: pointer; transition: all 0.12s; white-space: nowrap; font-family: 'DM Sans', sans-serif; }
+.country-btn:hover { border-color: var(--sage-mid); background: var(--sage-light); color: var(--sage-dark); }
+.country-btn.active { background: var(--sage); border-color: var(--sage); color: var(--white); }
 .search-wrap { display: flex; gap: 8px; }
 .search-input { flex: 1; padding: 14px 18px; border: 1px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--ink); background: var(--white); box-shadow: 0 1px 4px var(--shadow-sm); transition: border-color 0.15s, box-shadow 0.15s; }
 .search-input:focus { outline: none; border-color: var(--sage); box-shadow: 0 0 0 3px rgba(74,124,111,0.12); }
@@ -62,53 +45,32 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
 .search-btn { padding: 14px 26px; background: var(--sage); color: var(--white); border: none; border-radius: 10px; font-family: 'DM Serif Display', serif; font-size: 16px; cursor: pointer; box-shadow: 0 1px 4px var(--shadow-sm); transition: all 0.15s; white-space: nowrap; }
 .search-btn:hover { background: var(--sage-dark); }
 .search-btn:disabled { background: var(--stone-mid); cursor: not-allowed; }
-
-/* TOPIC GRID */
-.topics-section { margin-bottom: 40px; }
-.topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
-.topic-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px; cursor: pointer; transition: all 0.15s; text-align: left; position: relative; overflow: hidden; }
-.topic-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--card-accent, var(--sage)); opacity: 0; transition: opacity 0.15s; }
-.topic-card:hover { border-color: var(--card-accent, var(--sage-mid)); box-shadow: 0 2px 10px var(--shadow); transform: translateY(-1px); }
-.topic-card:hover::before { opacity: 1; }
-.topic-card.active { border-color: var(--card-accent, var(--sage)); background: var(--sage-light); }
-.topic-card.active::before { opacity: 1; }
-.t-icon { font-size: 20px; margin-bottom: 6px; display: block; }
-.t-title { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.3; }
-.t-desc { font-size: 12px; color: var(--stone); line-height: 1.45; margin-top: 3px; }
-
-/* RESULTS AREA */
-.results-section { margin-bottom: 48px; }
-
-/* LOADING */
+.results-section { margin-bottom: 32px; }
 .loading { display: flex; flex-direction: column; align-items: center; padding: 48px 20px; gap: 16px; color: var(--stone); font-size: 14px; }
 .dots { display: flex; gap: 6px; }
 .dot { width: 8px; height: 8px; background: var(--sage-mid); border-radius: 50%; animation: pulse 1.2s ease-in-out infinite; }
 .dot:nth-child(2) { animation-delay: 0.2s; }
 .dot:nth-child(3) { animation-delay: 0.4s; }
 @keyframes pulse { 0%,80%,100%{transform:translateY(0);opacity:0.5} 40%{transform:translateY(-8px);opacity:1} }
-
-/* SUMMARY CARD */
-.summary-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 16px; animation: fadeUp 0.3s ease both; box-shadow: 0 2px 12px var(--shadow-sm); }
+.empty-state { text-align: center; padding: 40px 20px; color: var(--stone); }
+.empty-icon { font-size: 40px; margin-bottom: 10px; display: block; opacity: 0.35; }
+.empty-state p { font-size: 14px; line-height: 1.65; max-width: 340px; margin: 0 auto; }
+.error-state { background: var(--rose-light); border: 1px solid #e8b4be; border-radius: 12px; padding: 20px 24px; font-size: 13px; color: #8a2a3e; line-height: 1.6; }
+.summary-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 2px 12px var(--shadow-sm); animation: fadeUp 0.3s ease both; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-
 .summary-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); }
 .summary-query { font-family: 'DM Serif Display', serif; font-size: 22px; font-style: italic; color: var(--ink); margin-bottom: 6px; line-height: 1.3; }
-.summary-meta { font-size: 12px; color: var(--stone); display: flex; gap: 12px; flex-wrap: wrap; }
-.summary-meta span { display: flex; align-items: center; gap: 4px; }
-
-/* EVIDENCE VS PATIENT GRID */
-.evp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.summary-meta { font-size: 12px; color: var(--stone); }
+.evp-grid { display: grid; grid-template-columns: 1fr 1fr; }
 .evp-panel { padding: 20px 24px; }
 .evp-panel:first-child { border-right: 1px solid var(--border); }
 .evp-label { font-size: 11px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
 .evp-label.clinical { color: var(--blue); }
 .evp-label.patient { color: var(--rose); }
-.evp-label .dot-indicator { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot-indicator { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .evp-label.clinical .dot-indicator { background: var(--blue); }
 .evp-label.patient .dot-indicator { background: var(--rose); }
 .evp-text { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
-
-/* CONFIDENCE + KEY TAKEAWAY */
 .summary-footer { padding: 16px 24px; background: var(--stone-light); border-top: 1px solid var(--border); display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
 .takeaway { flex: 1; min-width: 200px; }
 .takeaway-label { font-size: 11px; font-weight: 500; letter-spacing: 0.7px; text-transform: uppercase; color: var(--stone); margin-bottom: 4px; }
@@ -119,12 +81,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
 .confidence-badge.high { background: var(--green-light); color: var(--green); }
 .confidence-badge.medium { background: var(--amber-light); color: var(--amber); }
 .confidence-badge.low { background: var(--rose-light); color: var(--rose); }
-
-/* SOURCE LINKS */
-.sources-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; animation: fadeUp 0.3s ease 0.1s both; }
-.sources-header { padding: 16px 24px; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 500; color: var(--ink-soft); display: flex; align-items: center; gap: 8px; }
+.sources-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 16px; animation: fadeUp 0.3s ease 0.1s both; }
+.sources-header { padding: 16px 24px; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 500; color: var(--ink-soft); }
 .source-list { padding: 8px 0; }
-.source-item { padding: 14px 24px; display: flex; align-items: flex-start; gap: 14px; border-bottom: 1px solid var(--border); transition: background 0.12s; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: rgba(74,124,111,0.15); }
+.source-item { padding: 14px 24px; display: flex; align-items: flex-start; gap: 14px; border-bottom: 1px solid var(--border); text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: rgba(74,124,111,0.15); transition: background 0.12s; }
 .source-item:last-child { border-bottom: none; }
 .source-item:hover, .source-item:active { background: var(--sage-light); }
 .source-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
@@ -134,7 +94,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
 .source-icon.news { background: var(--amber-light); }
 .source-body { flex: 1; min-width: 0; }
 .source-title { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.35; margin-bottom: 3px; }
-.source-item:hover .source-title { color: var(--sage-dark); }
 .source-snippet { font-size: 12px; color: var(--stone); line-height: 1.5; }
 .source-tags { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
 .stag { font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
@@ -144,24 +103,21 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
 .stag-type.patient { background: var(--rose-light); color: var(--rose); }
 .stag-type.organisation { background: var(--sage-light); color: var(--sage-dark); }
 .stag-type.news { background: var(--amber-light); color: var(--amber); }
-.source-arrow { color: var(--stone-mid); font-size: 16px; align-self: center; flex-shrink: 0; transition: color 0.12s; }
+.source-arrow { color: var(--stone-mid); font-size: 16px; align-self: center; flex-shrink: 0; }
 .source-item:hover .source-arrow { color: var(--sage); }
-
-/* QUICK LINKS BELOW */
-.quick-links-section { margin-top: 16px; }
-.quick-links-row { display: flex; gap: 8px; flex-wrap: wrap; }
-.qlink { padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--white); font-size: 12px; font-weight: 500; color: var(--ink-soft); cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.12s; }
+.quick-links-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+.qlink { padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--white); font-size: 12px; font-weight: 500; color: var(--ink-soft); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.12s; }
 .qlink:hover { background: var(--sage-light); border-color: var(--sage-mid); color: var(--sage-dark); }
-
-/* COUNTRY SELECTOR */
-.country-selector { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-.country-label { font-size: 12px; font-weight: 500; color: var(--stone); white-space: nowrap; }
-.country-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-.country-btn { padding: 7px 14px; border: 1px solid var(--border); border-radius: 20px; background: var(--white); font-size: 13px; font-weight: 500; color: var(--ink-soft); cursor: pointer; transition: all 0.12s; white-space: nowrap; font-family: 'DM Sans', sans-serif; }
-.country-btn:hover { border-color: var(--sage-mid); background: var(--sage-light); color: var(--sage-dark); }
-.country-btn.active { background: var(--sage); border-color: var(--sage); color: var(--white); }
-
-/* RESOURCE DIRECTORY */
+.topics-section { margin-bottom: 40px; }
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
+.topic-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px; cursor: pointer; transition: all 0.15s; text-align: left; position: relative; overflow: hidden; }
+.topic-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--card-accent, var(--sage)); opacity: 0; transition: opacity 0.15s; }
+.topic-card:hover { border-color: var(--sage-mid); box-shadow: 0 2px 10px var(--shadow); transform: translateY(-1px); }
+.topic-card:hover::before, .topic-card.active::before { opacity: 1; }
+.topic-card.active { border-color: var(--sage); background: var(--sage-light); }
+.t-icon { font-size: 20px; margin-bottom: 6px; display: block; }
+.t-title { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+.t-desc { font-size: 12px; color: var(--stone); line-height: 1.45; margin-top: 3px; }
 .resources-section { margin-bottom: 48px; }
 .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
 .resource-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; transition: all 0.15s; text-decoration: none; display: block; }
@@ -171,20 +127,8 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
 .r-country { font-size: 11px; font-weight: 500; letter-spacing: 0.3px; color: var(--stone); margin-bottom: 6px; }
 .r-desc { font-size: 12px; color: var(--stone); line-height: 1.55; }
 .r-tag { display: inline-block; margin-top: 8px; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 20px; background: var(--sage-light); color: var(--sage-dark); }
-
-/* EMPTY STATE */
-.empty-state { text-align: center; padding: 60px 20px; color: var(--stone); }
-.empty-icon { font-size: 48px; margin-bottom: 12px; display: block; opacity: 0.35; }
-.empty-state p { font-size: 14px; line-height: 1.65; max-width: 340px; margin: 0 auto; }
-
-/* ERROR */
-.error-state { background: var(--rose-light); border: 1px solid #e8b4be; border-radius: 12px; padding: 20px 24px; font-size: 13px; color: #8a2a3e; line-height: 1.6; }
-
-/* FOOTER */
 .page-footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 12px; color: var(--stone); text-align: center; line-height: 2; }
 .page-footer a { color: var(--sage); text-decoration: none; }
-.page-footer a:hover { text-decoration: underline; }
-
 @media (max-width: 600px) {
   .hero { grid-template-columns: 1fr; }
   .hero h1 { font-size: 30px; }
@@ -199,7 +143,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
 <body>
 <div class="page">
 
-  <!-- HERO -->
   <div class="hero">
     <div>
       <h1>Tamoxifen<br><em>Research Hub</em></h1>
@@ -208,118 +151,63 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
     <div class="hero-pill">✦ Evidence + Experience</div>
   </div>
 
-
-
-  <!-- DISCLAIMER -->
   <div class="disclaimer">
     ⚕ <strong>For personal research only.</strong> This tool summarises publicly available information. It is not medical advice. Always discuss treatment decisions with your oncologist or specialist.
   </div>
 
-  <!-- SEARCH -->
   <div class="search-section">
     <div class="section-label">Ask anything about tamoxifen</div>
     <div class="country-selector">
       <span class="country-label">Prioritise results from:</span>
       <div class="country-btns">
-        <button class="country-btn active" onclick="setCountry(this,'Australia','🇦🇺')">🇦🇺 Australia</button>
-        <button class="country-btn" onclick="setCountry(this,'United Kingdom','🇬🇧')">🇬🇧 UK</button>
-        <button class="country-btn" onclick="setCountry(this,'United States','🇺🇸')">🇺🇸 US</button>
-        <button class="country-btn" onclick="setCountry(this,'International','🌐')">🌐 International</button>
+        <button class="country-btn active" onclick="setCountry(this,'Australia','AU')">🇦🇺 Australia</button>
+        <button class="country-btn" onclick="setCountry(this,'United Kingdom','UK')">🇬🇧 UK</button>
+        <button class="country-btn" onclick="setCountry(this,'United States','US')">🇺🇸 US</button>
+        <button class="country-btn" onclick="setCountry(this,'International','INT')">🌐 International</button>
       </div>
     </div>
     <div class="search-wrap">
-      <input type="text" class="search-input" id="searchInput" placeholder="e.g. Is it worth taking tamoxifen if my recurrence risk is low? How do I manage hot flashes?" />
+      <input type="text" class="search-input" id="searchInput" placeholder="e.g. How do I manage hot flashes? Is 5 or 10 years better?" />
       <button class="search-btn" id="searchBtn" onclick="runSearch()">Search</button>
     </div>
   </div>
 
-  <!-- RESULTS -->
   <div class="results-section" id="resultsSection">
     <div class="empty-state">
       <span class="empty-icon">🌿</span>
-      <p>Search above or pick a topic to get an AI-generated summary of the evidence alongside real patient perspectives.</p>
+      <p>Search above or pick a topic below to get an AI summary of the evidence alongside real patient perspectives.</p>
     </div>
   </div>
 
-  <!-- TOPIC CARDS -->
   <div class="topics-section">
     <div class="section-label">Or pick a topic</div>
     <div class="topic-grid">
-      <div class="topic-card" style="--card-accent:#4a7c6f;" onclick="topicSearch(this,'What do patients actually experience on tamoxifen day to day?')">
-        <span class="t-icon">💬</span><div class="t-title">Patient experiences</div><div class="t-desc">Real life on tamoxifen</div>
-      </div>
-      <div class="topic-card" style="--card-accent:#b85c6e;" onclick="topicSearch(this,'What are the most common tamoxifen side effects and how are they managed?')">
-        <span class="t-icon">⚠️</span><div class="t-title">Side effects</div><div class="t-desc">What to expect and manage</div>
-      </div>
-      <div class="topic-card" style="--card-accent:#3a6cb8;" onclick="topicSearch(this,'How much does tamoxifen reduce breast cancer recurrence risk?')">
-        <span class="t-icon">📊</span><div class="t-title">Recurrence & survival</div><div class="t-desc">What the numbers actually say</div>
-      </div>
-      <div class="topic-card" style="--card-accent:#2e8b8b;" onclick="topicSearch(this,'What do the latest tamoxifen clinical trials show?')">
-        <span class="t-icon">🔬</span><div class="t-title">Clinical studies</div><div class="t-desc">Latest trial results</div>
-      </div>
-      <div class="topic-card" style="--card-accent:#c8853a;" onclick="topicSearch(this,'Should I take tamoxifen for 5 years or 10 years?')">
-        <span class="t-icon">📅</span><div class="t-title">5 vs 10 year treatment</div><div class="t-desc">Duration decisions</div>
-      </div>
-      <div class="topic-card" style="--card-accent:#7c5cbf;" onclick="topicSearch(this,'How does tamoxifen affect mood, anxiety, depression and cognitive function?')">
-        <span class="t-icon">🧠</span><div class="t-title">Mental health</div><div class="t-desc">Mood, brain fog, cognition</div>
-      </div>
-      <div class="topic-card" style="--card-accent:#4a7c6f;" onclick="topicSearch(this,'How do you manage hot flashes and menopausal symptoms from tamoxifen?')">
-        <span class="t-icon">🌡️</span><div class="t-title">Hot flashes</div><div class="t-desc">Relief and management</div>
-      </div>
-      <div class="topic-card" style="--card-accent:#b85c6e;" onclick="topicSearch(this,'What does tamoxifen do to bone density and how do you protect bone health?')">
-        <span class="t-icon">🦴</span><div class="t-title">Bone health</div><div class="t-desc">Density, DEXA, protection</div>
-      </div>
-      <div class="topic-card" style="--card-accent:#2e8b8b;" onclick="topicSearch(this,'Can you get pregnant or preserve fertility while on tamoxifen?')">
-        <span class="t-icon">🌱</span><div class="t-title">Fertility & pregnancy</div><div class="t-desc">Family planning on tamoxifen</div>
-      </div>
-      <div class="topic-card" style="--card-accent:#3a6cb8;" onclick="topicSearch(this,'How does tamoxifen compare to aromatase inhibitors for premenopausal breast cancer?')">
-        <span class="t-icon">⚖️</span><div class="t-title">Tamoxifen vs AIs</div><div class="t-desc">Comparing your options</div>
-      </div>
-      <div class="topic-card" style="--card-accent:#c8853a;" onclick="topicSearch(this,'What medications and supplements interact with tamoxifen?')">
-        <span class="t-icon">💊</span><div class="t-title">Drug interactions</div><div class="t-desc">What to avoid</div>
-      </div>
-      <div class="topic-card" style="--card-accent:#7c5cbf;" onclick="topicSearch(this,'Is it worth taking tamoxifen if my recurrence risk is already low?')">
-        <span class="t-icon">🤔</span><div class="t-title">Is it worth it?</div><div class="t-desc">Weighing benefit vs side effects</div>
-      </div>
+      <div class="topic-card" style="--card-accent:#4a7c6f;" onclick="topicSearch(this,'What do patients actually experience on tamoxifen day to day?')"><span class="t-icon">💬</span><div class="t-title">Patient experiences</div><div class="t-desc">Real life on tamoxifen</div></div>
+      <div class="topic-card" style="--card-accent:#b85c6e;" onclick="topicSearch(this,'What are the most common tamoxifen side effects and how are they managed?')"><span class="t-icon">⚠️</span><div class="t-title">Side effects</div><div class="t-desc">What to expect and manage</div></div>
+      <div class="topic-card" style="--card-accent:#3a6cb8;" onclick="topicSearch(this,'How much does tamoxifen reduce breast cancer recurrence risk?')"><span class="t-icon">📊</span><div class="t-title">Recurrence & survival</div><div class="t-desc">What the numbers actually say</div></div>
+      <div class="topic-card" style="--card-accent:#2e8b8b;" onclick="topicSearch(this,'What do the latest tamoxifen clinical trials show?')"><span class="t-icon">🔬</span><div class="t-title">Clinical studies</div><div class="t-desc">Latest trial results</div></div>
+      <div class="topic-card" style="--card-accent:#c8853a;" onclick="topicSearch(this,'Should I take tamoxifen for 5 years or 10 years?')"><span class="t-icon">📅</span><div class="t-title">5 vs 10 year treatment</div><div class="t-desc">Duration decisions</div></div>
+      <div class="topic-card" style="--card-accent:#7c5cbf;" onclick="topicSearch(this,'How does tamoxifen affect mood anxiety depression and cognitive function?')"><span class="t-icon">🧠</span><div class="t-title">Mental health</div><div class="t-desc">Mood, brain fog, cognition</div></div>
+      <div class="topic-card" style="--card-accent:#4a7c6f;" onclick="topicSearch(this,'How do you manage hot flashes and menopausal symptoms from tamoxifen?')"><span class="t-icon">🌡️</span><div class="t-title">Hot flashes</div><div class="t-desc">Relief and management</div></div>
+      <div class="topic-card" style="--card-accent:#b85c6e;" onclick="topicSearch(this,'What does tamoxifen do to bone density and how do you protect bone health?')"><span class="t-icon">🦴</span><div class="t-title">Bone health</div><div class="t-desc">Density, DEXA, protection</div></div>
+      <div class="topic-card" style="--card-accent:#2e8b8b;" onclick="topicSearch(this,'Can you get pregnant or preserve fertility while on tamoxifen?')"><span class="t-icon">🌱</span><div class="t-title">Fertility & pregnancy</div><div class="t-desc">Family planning on tamoxifen</div></div>
+      <div class="topic-card" style="--card-accent:#3a6cb8;" onclick="topicSearch(this,'How does tamoxifen compare to aromatase inhibitors for premenopausal breast cancer?')"><span class="t-icon">⚖️</span><div class="t-title">Tamoxifen vs AIs</div><div class="t-desc">Comparing your options</div></div>
+      <div class="topic-card" style="--card-accent:#c8853a;" onclick="topicSearch(this,'What medications and supplements interact with tamoxifen?')"><span class="t-icon">💊</span><div class="t-title">Drug interactions</div><div class="t-desc">What to avoid</div></div>
+      <div class="topic-card" style="--card-accent:#7c5cbf;" onclick="topicSearch(this,'Is it worth taking tamoxifen if my recurrence risk is already low?')"><span class="t-icon">🤔</span><div class="t-title">Is it worth it?</div><div class="t-desc">Weighing benefit vs side effects</div></div>
     </div>
   </div>
 
-  <!-- TRUSTED RESOURCES -->
   <div class="resources-section">
     <div class="section-label">Trusted resources by country</div>
     <div class="resource-grid">
-      <a class="resource-card" href="https://www.bcna.org.au/health-information/articles/tamoxifen/" target="_blank">
-        <span class="r-flag">🇦🇺</span><div class="r-name">Breast Cancer Network Australia</div><div class="r-country">AUSTRALIA</div>
-        <div class="r-desc">Plain-language guides, My Journey app, and peer support.</div><span class="r-tag">Patient-focused</span>
-      </a>
-      <a class="resource-card" href="https://www.cancercouncil.com.au/breast-cancer/treatment/hormone-therapy/" target="_blank">
-        <span class="r-flag">🇦🇺</span><div class="r-name">Cancer Council Australia</div><div class="r-country">AUSTRALIA</div>
-        <div class="r-desc">Treatment guides, side effect help, 13 11 20 helpline.</div><span class="r-tag">Clinical guidance</span>
-      </a>
-      <a class="resource-card" href="https://www.eviq.org.au" target="_blank">
-        <span class="r-flag">🇦🇺</span><div class="r-name">eviQ — Cancer Institute NSW</div><div class="r-country">AUSTRALIA</div>
-        <div class="r-desc">Evidence-based protocols used by Australian oncologists.</div><span class="r-tag">Clinical protocols</span>
-      </a>
-      <a class="resource-card" href="https://pubmed.ncbi.nlm.nih.gov/?term=tamoxifen&sort=date" target="_blank">
-        <span class="r-flag">🌐</span><div class="r-name">PubMed — Tamoxifen</div><div class="r-country">INTERNATIONAL</div>
-        <div class="r-desc">World's largest medical research database, sorted by date.</div><span class="r-tag">Research database</span>
-      </a>
-      <a class="resource-card" href="https://www.breastcancer.org/treatment/hormonal/tamoxifen" target="_blank">
-        <span class="r-flag">🇺🇸</span><div class="r-name">Breastcancer.org</div><div class="r-country">UNITED STATES</div>
-        <div class="r-desc">Comprehensive patient guides and active community forums.</div><span class="r-tag">Patient education</span>
-      </a>
-      <a class="resource-card" href="https://www.macmillan.org.uk/cancer-information-and-support/treatments-and-drugs/tamoxifen" target="_blank">
-        <span class="r-flag">🇬🇧</span><div class="r-name">Macmillan Cancer Support</div><div class="r-country">UNITED KINGDOM</div>
-        <div class="r-desc">Clear guides, forums, and free support helpline.</div><span class="r-tag">Support + guidance</span>
-      </a>
-      <a class="resource-card" href="https://www.reddit.com/r/breastcancer/search/?q=tamoxifen&sort=top" target="_blank">
-        <span class="r-flag">🌐</span><div class="r-name">Reddit — r/breastcancer</div><div class="r-country">INTERNATIONAL</div>
-        <div class="r-desc">Honest first-person tamoxifen experiences from patients worldwide.</div><span class="r-tag">Patient community</span>
-      </a>
-      <a class="resource-card" href="https://clinicaltrials.gov/search?cond=breast+cancer&term=tamoxifen&country=Australia" target="_blank">
-        <span class="r-flag">🌐</span><div class="r-name">ClinicalTrials.gov — Australia</div><div class="r-country">INTERNATIONAL</div>
-        <div class="r-desc">Active and recruiting tamoxifen trials in Australia.</div><span class="r-tag">Clinical trials</span>
-      </a>
+      <a class="resource-card" href="https://www.bcna.org.au/health-information/articles/tamoxifen/" target="_blank"><span class="r-flag">🇦🇺</span><div class="r-name">Breast Cancer Network Australia</div><div class="r-country">AUSTRALIA</div><div class="r-desc">Plain-language guides, My Journey app, and peer support.</div><span class="r-tag">Patient-focused</span></a>
+      <a class="resource-card" href="https://www.cancercouncil.com.au/breast-cancer/treatment/hormone-therapy/" target="_blank"><span class="r-flag">🇦🇺</span><div class="r-name">Cancer Council Australia</div><div class="r-country">AUSTRALIA</div><div class="r-desc">Treatment guides, side effect help, 13 11 20 helpline.</div><span class="r-tag">Clinical guidance</span></a>
+      <a class="resource-card" href="https://www.eviq.org.au" target="_blank"><span class="r-flag">🇦🇺</span><div class="r-name">eviQ — Cancer Institute NSW</div><div class="r-country">AUSTRALIA</div><div class="r-desc">Evidence-based protocols used by Australian oncologists.</div><span class="r-tag">Clinical protocols</span></a>
+      <a class="resource-card" href="https://pubmed.ncbi.nlm.nih.gov/?term=tamoxifen&sort=date" target="_blank"><span class="r-flag">🌐</span><div class="r-name">PubMed — Tamoxifen</div><div class="r-country">INTERNATIONAL</div><div class="r-desc">World's largest medical research database, sorted by date.</div><span class="r-tag">Research database</span></a>
+      <a class="resource-card" href="https://www.breastcancer.org/treatment/hormonal/tamoxifen" target="_blank"><span class="r-flag">🇺🇸</span><div class="r-name">Breastcancer.org</div><div class="r-country">UNITED STATES</div><div class="r-desc">Comprehensive patient guides and active community forums.</div><span class="r-tag">Patient education</span></a>
+      <a class="resource-card" href="https://www.macmillan.org.uk/cancer-information-and-support/treatments-and-drugs/tamoxifen" target="_blank"><span class="r-flag">🇬🇧</span><div class="r-name">Macmillan Cancer Support</div><div class="r-country">UNITED KINGDOM</div><div class="r-desc">Clear guides, forums, and free support helpline.</div><span class="r-tag">Support + guidance</span></a>
+      <a class="resource-card" href="https://www.reddit.com/r/breastcancer/search/?q=tamoxifen&sort=top" target="_blank"><span class="r-flag">🌐</span><div class="r-name">Reddit — r/breastcancer</div><div class="r-country">INTERNATIONAL</div><div class="r-desc">Honest first-person tamoxifen experiences from patients worldwide.</div><span class="r-tag">Patient community</span></a>
+      <a class="resource-card" href="https://clinicaltrials.gov/search?cond=breast+cancer&term=tamoxifen&country=Australia" target="_blank"><span class="r-flag">🌐</span><div class="r-name">ClinicalTrials.gov — Australia</div><div class="r-country">INTERNATIONAL</div><div class="r-desc">Active and recruiting tamoxifen trials in Australia.</div><span class="r-tag">Clinical trials</span></a>
     </div>
   </div>
 
@@ -334,191 +222,112 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
 
 </div>
 <script>
-let selectedCountry = 'Australia';
-let selectedFlag = '🇦🇺';
+var selectedCountry = 'Australia';
+var selectedFlag = 'AU';
 
 function setCountry(btn, country, flag) {
   selectedCountry = country;
   selectedFlag = flag;
-  document.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.country-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
 }
 
 function topicSearch(card, query) {
-  document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.topic-card').forEach(function(c) { c.classList.remove('active'); });
   card.classList.add('active');
   document.getElementById('searchInput').value = query;
   runSearch();
 }
 
-// ── SEARCH ──
-async function runSearch() {
-  const query = document.getElementById('searchInput').value.trim();
+function runSearch() {
+  var query = document.getElementById('searchInput').value.trim();
   if (!query) return;
 
-  const btn = document.getElementById('searchBtn');
+  var btn = document.getElementById('searchBtn');
   btn.disabled = true;
 
-  document.getElementById('resultsSection').innerHTML = `
-    <div class="loading">
-      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-      <span>Searching research and patient communities…</span>
-    </div>`;
+  document.getElementById('resultsSection').innerHTML = '<div class="loading"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span>Searching research and patient communities...</span></div>';
 
-  const countryContext = {
-    'Australia': `PRIORITY: Prioritise Australian sources above all others. Always look for: BCNA (Breast Cancer Network Australia), Cancer Council Australia, eviQ, Breast Cancer Trials AU/NZ, Peter MacCallum Cancer Centre, and Australian oncology guidelines. Use Australian spelling and reference PBS/Medicare where relevant.`,
-    'United Kingdom': `PRIORITY: Prioritise UK sources above all others. Always look for: Macmillan Cancer Support, Cancer Research UK, NHS guidelines, Breast Cancer Now, and NICE guidelines.`,
-    'United States': `PRIORITY: Prioritise US sources above all others. Always look for: Breastcancer.org, ASCO, NCCN guidelines, NCI, Memorial Sloan Kettering, and FDA guidance.`,
-    'International': `Draw from a broad mix of international sources — include Australian, UK, US, and European sources for a balanced global perspective.`
+  var countryInstructions = {
+    'Australia': 'PRIORITY: Always look for Australian sources first: BCNA, Cancer Council Australia, eviQ, Breast Cancer Trials AU/NZ, Peter MacCallum. Use Australian spelling.',
+    'United Kingdom': 'PRIORITY: Always look for UK sources first: Macmillan Cancer Support, Cancer Research UK, NHS guidelines, Breast Cancer Now, NICE guidelines.',
+    'United States': 'PRIORITY: Always look for US sources first: Breastcancer.org, ASCO, NCCN guidelines, NCI, Memorial Sloan Kettering.',
+    'International': 'Draw from a broad mix of Australian, UK, US and European sources.'
   };
 
-  const systemPrompt = `You are a medical research assistant helping people understand tamoxifen. ${countryContext[selectedCountry] || countryContext['International']}
+  var countryNote = countryInstructions[selectedCountry] || countryInstructions['International'];
 
-CRITICAL FOR PATIENT EXPERIENCE SECTION: You MUST search for and include real patient voices. Specifically look at: Reddit r/breastcancer, Reddit r/cancer, Breastcancer.org community forums, BCNA community (for Australian results), Macmillan forums (for UK results), and personal blog posts from patients. The patient experience section must reflect genuine lived experiences from these communities — not clinical summaries of patient-reported outcomes. Include both positive experiences and struggles.
+  var prompt = 'You are a medical research assistant helping people understand tamoxifen. ' + countryNote + ' IMPORTANT: Always include real patient voices from Reddit r/breastcancer, Breastcancer.org forums, and BCNA community. Return ONLY a valid JSON object with these exact fields: query_summary (string), clinical_evidence (string, 2-4 sentences with statistics), patient_experience (string, 2-4 sentences from real patient forums), key_takeaway (string, 1-2 sentences), confidence (string: high/medium/low), confidence_reason (string), sources (array of objects each with: title, url, snippet, source_name, country, year, type). Include 5-8 sources. Every source needs a real https:// URL. No markdown, no preamble, only JSON.';
 
-Search for information and return a JSON object with exactly these fields:
-
-{
-  "query_summary": "brief restatement of the question in plain language",
-  "clinical_evidence": "2-4 sentences summarising what clinical research and medical guidelines say. Include specific numbers/statistics where available. Reference ${selectedCountry} guidelines where possible.",
-  "patient_experience": "2-4 sentences summarising what real patients say on forums like Reddit r/breastcancer, Breastcancer.org forums, and BCNA community. Quote the flavour of what people say. Include both positive and negative experiences. Mention if ${selectedCountry} patient experiences differ.",
-  "key_takeaway": "1-2 sentence plain-language bottom line that directly answers the question",
-  "confidence": "high, medium, or low — based on quality and consistency of evidence found",
-  "confidence_reason": "one short sentence explaining the confidence level",
-  "sources": [
-    {
-      "title": "title of source",
-      "url": "full URL starting with https://",
-      "snippet": "1-2 sentence description of what this source says",
-      "source_name": "publication or organisation name",
-      "country": "country of origin",
-      "year": year as number or null,
-      "type": "clinical, patient, organisation, or news"
-    }
-  ]
-}
-
-Return ONLY valid JSON. No preamble, no explanation, no markdown fences. Include 5-8 sources — always include at least 1-2 patient community sources (Reddit, forums, blogs) and prioritise ${selectedCountry} sources. Every source must have a real, complete URL starting with https://.`;
-
-  try {
-    const response = await fetch('/.netlify/functions/search', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, systemPrompt })
-    });
-
-    if (!response.ok) {
-      const err = await response.json().catch(() => ({}));
-      throw new Error(err.error?.message || 'API error ' + response.status);
-    }
-
-    const data = await response.json();
-    const text = data.choices?.[0]?.message?.content || '';
-
-    let clean = text.replace(/```json|```/gi, '').trim();
-    const s = clean.indexOf('{'), e = clean.lastIndexOf('}');
-    if (s !== -1 && e !== -1) clean = clean.slice(s, e + 1);
-
-    let result;
-    try { result = JSON.parse(clean); }
-    catch(err) { throw new Error('Could not parse response. Please try again.'); }
-
+  fetch('/.netlify/functions/search', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: query, systemPrompt: prompt })
+  })
+  .then(function(response) {
+    if (!response.ok) { throw new Error('Server error ' + response.status); }
+    return response.json();
+  })
+  .then(function(data) {
+    var text = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) ? data.choices[0].message.content : '';
+    var clean = text.replace(/```json/gi, '').replace(/```/gi, '').trim();
+    var start = clean.indexOf('{');
+    var end = clean.lastIndexOf('}');
+    if (start !== -1 && end !== -1) { clean = clean.slice(start, end + 1); }
+    var result = JSON.parse(clean);
     renderResult(query, result);
-
-  } catch(err) {
-    document.getElementById('resultsSection').innerHTML = `
-      <div class="error-state">
-        <strong>Search failed:</strong> ${esc(err.message)}<br><br>
-        This usually means the search function is still deploying — wait 60 seconds and try again. If it persists, check your API credits at <a href="https://www.perplexity.ai/settings/api" target="_blank" style="color:#b85c6e">perplexity.ai/settings/api</a>.
-      </div>`;
-  }
-
-  btn.disabled = false;
+  })
+  .catch(function(err) {
+    document.getElementById('resultsSection').innerHTML = '<div class="error-state"><strong>Search failed:</strong> ' + esc(err.message) + '<br><br>Please try again in a moment.</div>';
+  })
+  .finally(function() {
+    btn.disabled = false;
+  });
 }
 
 function renderResult(query, r) {
-  const confidenceClass = (r.confidence || 'medium').toLowerCase();
-  const confidenceLabel = { high: '✓ High confidence', medium: '~ Medium confidence', low: '⚠ Low confidence' }[confidenceClass] || 'Medium confidence';
+  var confClass = (r.confidence || 'medium').toLowerCase();
+  var confLabel = confClass === 'high' ? '✓ High confidence' : confClass === 'low' ? '⚠ Low confidence' : '~ Medium confidence';
+  var typeIcon = { clinical: '🔬', patient: '💬', organisation: '🏥', news: '📰' };
+  var typeLabel = { clinical: 'Clinical', patient: 'Patient', organisation: 'Organisation', news: 'News' };
 
-  const typeIcon = { clinical: '🔬', patient: '💬', organisation: '🏥', news: '📰' };
-  const typeLabel = { clinical: 'Clinical', patient: 'Patient', organisation: 'Organisation', news: 'News' };
-
-  const sourcesHtml = (r.sources || []).map(s => {
-    const t = (s.type || 'clinical').toLowerCase();
-    const icon = typeIcon[t] || '📄';
-    const label = typeLabel[t] || t;
-    const tags = [
-      s.country ? `<span class="stag stag-country">📍 ${esc(s.country)}</span>` : '',
-      s.year ? `<span class="stag stag-year">${s.year}</span>` : '',
-      `<span class="stag stag-type ${t}">${esc(label)}</span>`
-    ].filter(Boolean).join('');
-
-    const inner = `
-      <div class="source-icon ${t}">${icon}</div>
-      <div class="source-body">
-        <div class="source-title">${esc(s.title || s.source_name || 'Source')}</div>
-        <div class="source-snippet">${esc(s.snippet || '')}</div>
-        <div class="source-tags">${tags}</div>
-      </div>
-      <div class="source-arrow">→</div>`;
-
-    const safeUrl = s.url && s.url.startsWith('http') ? s.url : null;
-    return safeUrl
-      ? `<a class="source-item" href="${safeUrl}" target="_blank" rel="noopener noreferrer">${inner}</a>`
-      : `<div class="source-item" style="cursor:default">${inner}</div>`;
+  var sourcesHtml = (r.sources || []).map(function(s) {
+    var t = (s.type || 'clinical').toLowerCase();
+    var tags = '';
+    if (s.country) tags += '<span class="stag stag-country">📍 ' + esc(s.country) + '</span>';
+    if (s.year) tags += '<span class="stag stag-year">' + s.year + '</span>';
+    tags += '<span class="stag stag-type ' + t + '">' + esc(typeLabel[t] || t) + '</span>';
+    var inner = '<div class="source-icon ' + t + '">' + (typeIcon[t] || '📄') + '</div><div class="source-body"><div class="source-title">' + esc(s.title || s.source_name || 'Source') + '</div><div class="source-snippet">' + esc(s.snippet || '') + '</div><div class="source-tags">' + tags + '</div></div><div class="source-arrow">→</div>';
+    var safeUrl = (s.url && s.url.indexOf('http') === 0) ? s.url : null;
+    return safeUrl ? '<a class="source-item" href="' + safeUrl + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>' : '<div class="source-item" style="cursor:default">' + inner + '</div>';
   }).join('');
 
-  // Quick search links
-  const quickLinks = [
-    { label: '🔬 PubMed', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=' + encodeURIComponent('tamoxifen ' + query) + '&sort=date' },
-    { label: '💬 Reddit', url: 'https://www.reddit.com/search/?q=' + encodeURIComponent('tamoxifen ' + query) + '&sort=relevance' },
-    { label: '📺 YouTube', url: 'https://www.youtube.com/results?search_query=' + encodeURIComponent('tamoxifen ' + query) },
-    { label: '🎓 Google Scholar', url: 'https://scholar.google.com/scholar?q=' + encodeURIComponent('tamoxifen ' + query) }
-  ].map(l => `<a class="qlink" href="${l.url}" target="_blank">${l.label}</a>`).join('');
+  var quickLinks = [
+    '<a class="qlink" href="https://pubmed.ncbi.nlm.nih.gov/?term=' + encodeURIComponent('tamoxifen ' + query) + '&sort=date" target="_blank">🔬 PubMed</a>',
+    '<a class="qlink" href="https://www.reddit.com/search/?q=' + encodeURIComponent('tamoxifen ' + query) + '&sort=relevance" target="_blank">💬 Reddit</a>',
+    '<a class="qlink" href="https://www.youtube.com/results?search_query=' + encodeURIComponent('tamoxifen ' + query) + '" target="_blank">📺 YouTube</a>',
+    '<a class="qlink" href="https://scholar.google.com/scholar?q=' + encodeURIComponent('tamoxifen ' + query) + '" target="_blank">🎓 Google Scholar</a>'
+  ].join('');
 
-  document.getElementById('resultsSection').innerHTML = `
-    <div class="section-label">Summary</div>
-    <div class="summary-card">
-      <div class="summary-header">
-        <div class="summary-query">${esc(r.query_summary || query)}</div>
-        <div class="summary-meta">
-          <span>🔍 Searched research + patient communities &nbsp;·&nbsp; ${selectedFlag} Prioritising ${selectedCountry} sources</span>
-        </div>
-      </div>
-      <div class="evp-grid">
-        <div class="evp-panel">
-          <div class="evp-label clinical"><div class="dot-indicator"></div>What the evidence says</div>
-          <div class="evp-text">${esc(r.clinical_evidence || '')}</div>
-        </div>
-        <div class="evp-panel">
-          <div class="evp-label patient"><div class="dot-indicator"></div>What patients actually experience</div>
-          <div class="evp-text">${esc(r.patient_experience || '')}</div>
-        </div>
-      </div>
-      <div class="summary-footer">
-        <div class="takeaway">
-          <div class="takeaway-label">Key takeaway</div>
-          <div class="takeaway-text">${esc(r.key_takeaway || '')}</div>
-        </div>
-        <div class="confidence-wrap">
-          <div class="confidence-label">Confidence</div>
-          <div class="confidence-badge ${confidenceClass}">${confidenceLabel}</div>
-          ${r.confidence_reason ? `<div style="font-size:11px;color:var(--stone);margin-top:3px;max-width:160px;text-align:right">${esc(r.confidence_reason)}</div>` : ''}
-        </div>
-      </div>
-    </div>
+  var html = '<div class="section-label">Summary</div>';
+  html += '<div class="summary-card">';
+  html += '<div class="summary-header"><div class="summary-query">' + esc(r.query_summary || query) + '</div><div class="summary-meta">🔍 Searched research + patient communities &nbsp;·&nbsp; Prioritising ' + esc(selectedCountry) + ' sources</div></div>';
+  html += '<div class="evp-grid">';
+  html += '<div class="evp-panel"><div class="evp-label clinical"><div class="dot-indicator"></div>What the evidence says</div><div class="evp-text">' + esc(r.clinical_evidence || '') + '</div></div>';
+  html += '<div class="evp-panel"><div class="evp-label patient"><div class="dot-indicator"></div>What patients actually experience</div><div class="evp-text">' + esc(r.patient_experience || '') + '</div></div>';
+  html += '</div>';
+  html += '<div class="summary-footer"><div class="takeaway"><div class="takeaway-label">Key takeaway</div><div class="takeaway-text">' + esc(r.key_takeaway || '') + '</div></div>';
+  html += '<div class="confidence-wrap"><div class="confidence-label">Confidence</div><div class="confidence-badge ' + confClass + '">' + confLabel + '</div>';
+  if (r.confidence_reason) { html += '<div style="font-size:11px;color:var(--stone);margin-top:3px;max-width:160px;text-align:right">' + esc(r.confidence_reason) + '</div>'; }
+  html += '</div></div></div>';
+  if (sourcesHtml) {
+    html += '<div class="section-label" style="margin-top:20px">Sources</div>';
+    html += '<div class="sources-card"><div class="sources-header">📚 ' + (r.sources || []).length + ' sources found — tap to read in full</div><div class="source-list">' + sourcesHtml + '</div></div>';
+  }
+  html += '<div class="section-label" style="margin-top:20px">Search further</div>';
+  html += '<div class="quick-links-row">' + quickLinks + '</div>';
 
-    ${sourcesHtml ? `
-    <div class="section-label" style="margin-top:20px">Sources</div>
-    <div class="sources-card">
-      <div class="sources-header">📚 ${(r.sources||[]).length} source${(r.sources||[]).length !== 1 ? 's' : ''} found — click to read in full</div>
-      <div class="source-list">${sourcesHtml}</div>
-    </div>` : ''}
-
-    <div class="quick-links-section">
-      <div class="section-label" style="margin-top:20px">Search further</div>
-      <div class="quick-links-row">${quickLinks}</div>
-    </div>`;
+  document.getElementById('resultsSection').innerHTML = html;
 }
 
 function esc(s) {
@@ -526,13 +335,9 @@ function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// Init
-document.addEventListener('DOMContentLoaded', () => {
-  const saved = sessionStorage.getItem('pplx_key');
-  if (saved && saved.startsWith('pplx-')) {
-    apiKey = saved;
-  document.getElementById('searchInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') runSearch();
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('searchInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { runSearch(); }
   });
 });
 </script>

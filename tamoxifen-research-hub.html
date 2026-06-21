@@ -233,6 +233,14 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
     </div>
   </div>
 
+  <!-- RESULTS -->
+  <div class="results-section" id="resultsSection">
+    <div class="empty-state">
+      <span class="empty-icon">🌿</span>
+      <p>Search above or pick a topic to get an AI-generated summary of the evidence alongside real patient perspectives.</p>
+    </div>
+  </div>
+
   <!-- TOPIC CARDS -->
   <div class="topics-section">
     <div class="section-label">Or pick a topic</div>
@@ -273,14 +281,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
       <div class="topic-card" style="--card-accent:#7c5cbf;" onclick="topicSearch(this,'Is it worth taking tamoxifen if my recurrence risk is already low?')">
         <span class="t-icon">🤔</span><div class="t-title">Is it worth it?</div><div class="t-desc">Weighing benefit vs side effects</div>
       </div>
-    </div>
-  </div>
-
-  <!-- RESULTS -->
-  <div class="results-section" id="resultsSection">
-    <div class="empty-state">
-      <span class="empty-icon">🌿</span>
-      <p>Search above or pick a topic to get an AI-generated summary of the evidence alongside real patient perspectives.</p>
     </div>
   </div>
 
@@ -435,7 +435,7 @@ Return ONLY valid JSON. No preamble, no explanation, no markdown fences. Include
     document.getElementById('resultsSection').innerHTML = `
       <div class="error-state">
         <strong>Search failed:</strong> ${esc(err.message)}<br><br>
-        Check your API key is correct and you have credits at <a href="https://www.perplexity.ai/settings/api" target="_blank" style="color:#b85c6e">perplexity.ai/settings/api</a>.
+        This usually means the search function is still deploying — wait 60 seconds and try again. If it persists, check your API credits at <a href="https://www.perplexity.ai/settings/api" target="_blank" style="color:#b85c6e">perplexity.ai/settings/api</a>.
       </div>`;
   }
 

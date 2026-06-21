@@ -208,23 +208,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
     <div class="hero-pill">✦ Evidence + Experience</div>
   </div>
 
-  <!-- API KEY SETUP -->
-  <div class="setup-banner hidden" id="setupBanner">
-    <div class="setup-title">🔑 One-time setup — add your free API key</div>
-    <div class="setup-desc">
-      This tool uses AI to summarise research for you. You need a free Perplexity API key — it takes 2 minutes and costs less than a coffee a month.<br>
-      <strong>Step 1:</strong> Go to <a href="https://www.perplexity.ai/settings/api" target="_blank">perplexity.ai/settings/api</a> → sign up free → click "Generate" to get your key.<br>
-      <strong>Step 2:</strong> Paste it below and click Save. You only need to do this once per device.
-    </div>
-    <div class="setup-row">
-      <input type="password" class="setup-input" id="apiKeyInput" placeholder="pplx-..." autocomplete="off" />
-      <button class="setup-btn" onclick="saveKey()">Save key &amp; start searching</button>
-    </div>
-  </div>
-  <div class="key-saved hidden" id="keySaved" style = "display:none;" >
-    ✓ API key saved — you're ready to search
-    <span class="change-key" onclick="changeKey()">Change key</span>
-  </div>
+
 
   <!-- DISCLAIMER -->
   <div class="disclaimer">
@@ -246,14 +230,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
     <div class="search-wrap">
       <input type="text" class="search-input" id="searchInput" placeholder="e.g. Is it worth taking tamoxifen if my recurrence risk is low? How do I manage hot flashes?" />
       <button class="search-btn" id="searchBtn" onclick="runSearch()">Search</button>
-    </div>
-  </div>
-  
-   <!-- RESULTS -->
-  <div class="results-section" id="resultsSection">
-    <div class="empty-state">
-      <span class="empty-icon">🌿</span>
-      <p>Search above or pick a topic to get an AI-generated summary of the evidence alongside real patient perspectives.</p>
     </div>
   </div>
 
@@ -297,6 +273,14 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
       <div class="topic-card" style="--card-accent:#7c5cbf;" onclick="topicSearch(this,'Is it worth taking tamoxifen if my recurrence risk is already low?')">
         <span class="t-icon">🤔</span><div class="t-title">Is it worth it?</div><div class="t-desc">Weighing benefit vs side effects</div>
       </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-section" id="resultsSection">
+    <div class="empty-state">
+      <span class="empty-icon">🌿</span>
+      <p>Search above or pick a topic to get an AI-generated summary of the evidence alongside real patient perspectives.</p>
     </div>
   </div>
 
@@ -350,7 +334,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(-
 
 </div>
 <script>
-let apiKey = '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';
 let selectedCountry = 'Australia';
 let selectedFlag = '🇦🇺';
 
@@ -359,27 +342,6 @@ function setCountry(btn, country, flag) {
   selectedFlag = flag;
   document.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-}
-
-// ── KEY MANAGEMENT ──
-function saveKey() {
-  const val = document.getElementById('apiKeyInput').value.trim();
-  if (!val || !val.startsWith('pplx-')) {
-    alert('Please enter a valid Perplexity API key — it starts with pplx-');
-    return;
-  }
-  apiKey = val;
-  sessionStorage.setItem('pplx_key', val);
-  document.getElementById('setupBanner').classList.add('hidden');
-  document.getElementById('keySaved').classList.remove('hidden');
-}
-
-function changeKey() {
-  apiKey = '';
-  sessionStorage.removeItem('pplx_key');
-  document.getElementById('setupBanner').classList.remove('hidden');
-  document.getElementById('keySaved').classList.add('hidden');
-  document.getElementById('apiKeyInput').value = '';
 }
 
 function topicSearch(card, query) {
@@ -394,12 +356,11 @@ async function runSearch() {
   const query = document.getElementById('searchInput').value.trim();
   if (!query) return;
 
-// - hidden for fixed key -
-// -  if (!apiKey) {
-// -    document.getElementById('apiKeyInput').focus();
-// -    alert('Please add your Perplexity API key first — see the yellow box above.');
-// -    return;
-// -  }
+  if (!apiKey) {
+    document.getElementById('apiKeyInput').focus();
+    alert('Please add your Perplexity API key first — see the yellow box above.');
+    return;
+  }
 
   const btn = document.getElementById('searchBtn');
   btn.disabled = true;
@@ -446,21 +407,10 @@ Search for information and return a JSON object with exactly these fields:
 Return ONLY valid JSON. No preamble, no explanation, no markdown fences. Include 5-8 sources — always include at least 1-2 patient community sources (Reddit, forums, blogs) and prioritise ${selectedCountry} sources. Every source must have a real, complete URL starting with https://.`;
 
   try {
-    const response = await fetch('https://api.perplexity.ai/chat/completions', {
+    const response = await fetch('/.netlify/functions/search', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + apiKey
-      },
-      body: JSON.stringify({
-        model: 'sonar',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: 'Search for tamoxifen information about: ' + query }
-        ],
-        max_tokens: 2000,
-        temperature: 0.2
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, systemPrompt })
     });
 
     if (!response.ok) {
@@ -587,14 +537,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const saved = sessionStorage.getItem('pplx_key');
   if (saved && saved.startsWith('pplx-')) {
     apiKey = saved;
-    document.getElementById('setupBanner').classList.add('hidden');
-    document.getElementById('keySaved').classList.remove('hidden');
-  }
   document.getElementById('searchInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') runSearch();
-  });
-  document.getElementById('apiKeyInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') saveKey();
   });
 });
 </script>
